@@ -1,0 +1,457 @@
+# === === === === === === === === === === === === === === === === === === ===
+# CSC 345 PROJECT, FALL 2023: SWING VISUALIZATION OF HYBRID SORTING ALGORITHMS
+# Created by Angelina A, Eiza S, Ethan W, Hayden R
+# === === === === === === === === === === === === === === === === === === ===
+
+
+#
+# Important Notes of Features that Differ from the Progress Updates
+#
+
+* In a previous progress update, it was said that the AnalyzedArray and
+AnalyzedArrayGroup extended the Graphable interface and it was also said that
+the AnalyzedArrayGroup had an "AGIM" (Array Global Index Manager) and
+"AMM" (Array Min/Max Manager) that allowed the group to track the indices, min,
+and max of both the set of visible-only arrays and the set of visible AND
+invisible arrays.
+* Both of these were removed in the final project due to the issues we faced with
+multithreading. Before multithreading, this additional complexity in the design
+was fine and gave us flexibility should we ever want to display the temporary
+array of Merge Sort or any other algorithm that would use another array.
+However, because the process of writing multithreading code is prone to
+unexpected behavior that is dangerously hard ot notice, we simplified the code
+in the multithreaded classes AnalyzedArray and AnalyzedArrayGroup, which
+involved removing Graphable, AGIM, and AMM.
+* These features were not fully utilized in the final design anyway and do not
+hinder the performance or efficacy of the project or app as of right now.
+
+
+
+#
+# Overview of the Project and its Software
+#
+
+For our CSC 345 Project, we chose to research and showcase hybrid sorting
+algorithms. Specifically, we wanted to explore how combining Merge Sort
+with common sorting algorithms including Insertion, Selection, Bubble, Heap,
+and Quick sort can potentially improve or worsen their performance.
+
+In order to analyze their sorting behavior and performance, we developed
+a Swing GUI app that has two major features:
+
+(1) BAR GRAPH: it can visualize the elements of all of the (visible) arrays
+created and used by the sorting algorithm as bars on a bar graph and color
+bars that were retrieved (get) and modified (set) by the sorting algorithm. This
+not only demonstrates the sorting methodology of a sorting algorithm but also
+signs of efficiency (e.g. divide and conquer) or inefficiency (e.g. naively
+swapping consecutive elements until the array is sorted like in Bubble Sort).
+
+(2) SCATTER PLOT: given an input array of size N, it can run a sorting algorithm
+multiple times with increasingly larger slices of its input array (increasing
+values of N) and record its total access count as points on a scatter plot.
+If the input array was [1, 2, 3, 4, 5] for example, it would test [1], then [1, 2],
+then [1, 2, 3], and so on. The x-axis is the values of N and the y-axis is the
+total access count (total number of get() and set() calls). This helps
+systematically analyze the asymptotic runtime of a sorting algorithm with
+extremely large input sizes that are too big to reasonable visualize with the
+bar graph.
+
+
+
+#
+# Categorizing and Outlining the Functionality of the Java Files
+#
+
+There are 14 total Java files in this project that fall under the different
+categories of functionality below:
+
+(1) ENTRY POINT:
+* Main:                     Starts the app with a main() method.
+
+(2) SORTING ALGORITHMS:
+* HybridSorts:              Contains all of our implementation of the standalone
+                            and hybrid algorithms.
+* Algorithm:                An object that contains a reference to a sorting
+                            algorithm method. This helps tread methods as objects
+                            that can be passed around in the code (instead of
+                            hard-coding method calls).
+
+(3) DATA COLLECTION OF SORTING ALGORITHMS:
+* AnalyzedArray:            A wrapper around a primitive int[] array. It helps
+                            track information for the bar graph (min, max, last-get,
+                            last-set) and scatter plot (access count).
+* AnalyzedArrayGroup:       A grouping of AnalyzedArrays. This is the link between
+                            the Swing GUI and the sorting algorithms. The
+                            algorithms can manage and create new arrays with
+                            the group and the Swing GUI can observe these arrays
+                            for analysis.
+
+(4) TEST CASES
+* TestCase:                 A collection of settings and parameters for a test
+                            case specified in the test case file. Includes the
+                            sorting algorithm, input array, the settings used
+                            to generate it, the plot x-axis and y-axis scale, etc.
+* TestCaseReader:           Reads the test case file and converts each test case
+                            and its parameters defined in the file into TestCase
+                            objects that can be passed to the Swing GUI.
+* TestCaseParseException:   A custom Exception that indicates that an error
+                            occurred when trying to parse the parameters of a
+                            test case in the file.
+
+(5) GUI
+* SortDemoSwing:            The entire Swing GUI. Combines the VisualGraphPanel,
+                            ScatterPlotPanel, and LoadingBarPanel into one
+                            GUI with buttons and drop-down menus that the user
+                            can interact with to choose a test case and view
+                            its bar graph visualization or scatter plot.
+* VisualGraphPanel:         The bar graph. Takes an AnalyzedArrayGroup with arrays
+                            that are actively being sorted by an algorithm in
+                            HybridSorts and visualizes its elements as a bar
+                            graph that is being rearranged and sorted.
+* ScatterPlotPanel:         The scatter plot. Takes a List of ScatterPoint objects
+                            representing 2D coordinate points and plots them
+                            onto a coordinate plane with a scalable x-axis and
+                            y-axis.
+* ScatterPoint:             An immutable 2D coordinate point that is defined
+                            with a long-type x-value and y-value. This was chosen
+                            over a built-in Java Point object since it does
+                            not support long types (and longs are necessary)
+                            to avoid 32-bit overflow bugs.
+* LoadingBarPanel:          The loading bar for the scatter plot. Since running
+                            a sorting algorithm dozens of times with huge input
+                            arrays can take a long time, the loading bar notifies
+                            the user of the current progress of the plotting
+                            process.
+
+
+
+#
+# How to Run and Use the App
+#
+
+=== === === === === === === === === === === 
+STARTING THE APP
+=== === === === === === === === === === ===
+
+The app is ran by running the Main class.
+
+If you are using a command line, first ensure that the .java files are all
+compiled first. Do this by running the command in the same folder as the
+.java files:
+==============
+javac *.java
+==============
+
+Then, run the Main.java file:
+==============
+java Main
+==============
+
+
+=== === === === === === === === === === === 
+USING THE APP
+=== === === === === === === === === === ===
+
+Upon running the app, the Swing GUI window will initially
+be on the test case Selection Screen.
+
+
+WHAT YOU WILL SEE ON THE SELECTION SCREEN AND ALL SCREENS:
+
+* At the top of the screen, there are three boxes with the text "Plotting",
+"Selection", and "Visualization" and arrows pointing from "Selection". This
+indicates what screen the app is currently viewing, which is indicated by
+the text box that is colored red. For example, on the Selection Screen, the
+text box "Selection" should be red and "Plotting" and "Visualization" should
+both be orange.
+
+
+WHAT YOU WILL SEE ON THE SELECTION SCREEN:
+
+* At the center the screen, the app has a large text box with the name of the
+visualization ("SortDemoSwing") and its authors.
+* Below that text box is the information of the currently selected test case.
+It includes the name of the test case, the sorting algorithm chosen, the
+size of the input, whether visualization and/or plotting is enabled, 
+how the input array was generated, and whether the x-axis and y-axis scale
+of the scatter plot was set manually or automatically.
+* At the very bottom there are four components:
+    * The "Plotting" Button: if plotting is enabled, then clicking this button
+    will switch to the Plotting Screen and start the process of generating the
+    scatter plot (a loading bar will show if it takes a while) and eventually
+    display the scatter plot.
+    * The "Visualize" Button: if visualization is enabled, then clicking this
+    button will switch to the Visualization Screen where the bar graph will
+    show the elements (bars) of the input array being accessed (get) and
+    modified (set) as the sorting algorithm works.
+    * The "Test Case" Drop-Down Menu: use this to select the test case that
+    will be used for the plotting and visualization. Clicking on a test case
+    will update the test case info text box in the center of the screen.
+    * The "Sort Speed" Drop-Down Menu: use this to change the delay that
+    occurs after each call to get() and set() in the sorting algorithm.
+    The "Very Fast" setting means the delay is very small and "Very Slow" means
+    the delay is very large.
+
+
+WHAT YOU WILL SEE ON THE PLOTTING SCREEN:
+
+* As the scatter plot is being generated, a loading bar will be shown on screen
+indicating the current size of the input (N) that is being sorted, the number
+of the current run out of all of the total runs (for now it is hard-coded to
+50 runs or points on the scatter plot), and the name of the sorting algorithm.
+* Once the scatter plot is generated and visible, the "Go Back" button is
+visible and can be clicked to return to the Selection Screen.
+
+
+WHAT YOU WILL SEE ON THE VISUALIZATION SCREEN:
+
+* The bar graph showing the elements of the input array as they are retrieved (get)
+and updated (set) is shown.
+* Eventually when the sorting algorithm finishes...
+    * A text box at the top-left corner of the screen will read "Array is sorted"
+    if the sorting algorithm successfully sorted the array and "Array is not sorted"
+    if the sorting algorithm failed to sort the array. This verifies that our
+    sorting algorithm was implemented properly.
+    * The "Go Back" and "Restart" buttons are no longer grayed out. Clicking
+    "Go back" returns to the Selection Screen and "Restart" runs the visualization
+    again from the very beginning (as if you ran it from the Selection Screen).
+
+
+
+#
+# How Do the Test Cases Work
+#
+
+A "test case" in this project is a collection of parameters for specifying an input
+array, how it is generated or provided, the algorithm that sorts it, and how it
+should be visualized and plotted.
+
+All of the test cases are defined in the same test_cases.txt file; they are not
+spread out across multiple files.
+
+The test cases are not written in Java code, rather they are made up of
+human-readable parameters that describe the test case at a high level. This was
+done intentionally over a .java file so that you (Professor Lotz) and any
+other TAs grading this project can easily write your own test cases, understand
+what we are testing in our test cases, and receive feedback from the
+TestCaseReader if any test cases were created improperly (instead of experiencing
+strange, unintended behavior from the program).
+
+
+
+#
+# What Kinds of Test Cases are in test_cases.txt Right Now?
+#
+
+There are various test cases with different purposes as to what they are
+trying to reveal or what they were used to show. Each test case has one of the
+keywords below in its name:
+
+(1) "Slides": the visualization and/or plot of the test case was captured and
+pasted into the slideshow.
+
+(2) "General": a test case with a relatively large number of elements to
+intentionally stress the algorithm and demonstrate its flexibility.
+
+
+#
+# Formatting Guide to Test Cases
+#
+
+In the test_cases.txt file, there is a test case "definition" and the test case
+"parameters" that are underneath each definition. A definition begins with a
+"@" followed by the name of the test case and each parameter beneath that
+definition is associated with that test case until the next definition.
+
+For example, here is an incomplete snippet of two test cases named TestCase1
+and TestCase2:
+=== === === === === === === === === === === === === === ===
+@TestCase1
+sortMethod:     insertion
+isArrayGiven:   false
+...
+
+@TestCase2
+sortMethod:     insertion
+isArrayGiven:   true
+...
+=== === === === === === === === === === === === === === ===
+
+
+A parameter is made up of the parameter name and parameter value separated by
+a colon. Whitespace is ignored everywhere, for both the name of a test case
+in its definition and its parameters. This means that the spaces in a test case
+name will be removed.
+
+Test case definitions and parameters can be separated with any number of blank
+lines or lines with white space. As said before, white space is ignored everywhere,
+so blank lines could only have a new line or have any amount of white space.
+
+Parameters can be arranged in any order, as long as they are underneath the
+test case definition that they are meant for. The order of the parameters do
+not change their meaning or result in an error. Instead, errors usually occur
+within the scope of a single parameter (e.g. the value "abc" for a parameter
+that expects an integer) or a illogical combination of parameters that
+contradict each other (e.g. setting isArrayGiven to false but providing a
+hard-coded array anyway).
+
+Both in-line and block comments are supported. A comment begins with a pound
+sign or "#" like in Python and everything to the right of it is ignored and
+not parsed. For example:
+=== === === === === === === === === === === === === === ===
+# This is a very cool
+#   block comment!
+@TestCase1 # This test case uses insertion sort.
+sortMethod:     insertion
+isArrayGiven:   false
+=== === === === === === === === === === === === === === ===
+
+
+
+#
+# Supported Parameters for the Test Cases and When To Use Them
+#
+
+There are 14 different parameters that can be used each with different...
+(A) requirements (mandatory, optional, sometimes mandatory)
+(B) value types
+(C) restrictions on values
+
+Although the requirements and restrictions are mostly obvious and can be explained
+with each parameter in the list of parameters below, here is a list of value types
+and how they are defined:
+(1) int:        A 32-bit, signed Java int
+(2) long:       A 64-bit, signed Java long
+(3) boolean:    A Java boolean (lowercase "true" or "false")
+(4) string:     A Java String (white space is ignored)
+(5) int array:  Similar to a Java int[] array, except it uses square brackets
+                "[]" instead of the usual curly brackets "{}"
+
+=== === === === === === === === === === === 
+LIST OF PARAMETERS
+=== === === === === === === === === === ===
+sortMethod:
+    The name of the sorting algorithm to use to sort the input array.
+    (A) REQUIRED:       mandatory all the time
+    (B) TYPE:           string
+    (C) RESTRICTIONS:   insertion, merge, heap, quick, bubble, selection,
+                        merge-selection, heap-merge, quick-merge, merge-insertion,
+                        bubble-merge
+
+=== === === === === INPUT ARRAY === === === === ===
+
+isArrayGiven:
+    Is true if the input array and all of its elements are provided in the
+    test case file; is false if the array is automatically generated.
+    (A) REQUIRED:       mandatory all the time
+    (B) TYPE:           boolean
+    (C) RESTRICTIONS:   none
+givenArray:
+    The actual, literal array of ints that will be used for the input of the
+    sorting algorithm.
+    (A) REQUIRED:       if isArrayGiven=true
+    (B) TYPE:           int array
+    (C) RESTRICTIONS:   none
+generateArraySize:
+    The number of elements of the input array if it were to be generated.
+    (A) REQUIRED:       if isArrayGiven=false
+    (B) TYPE:           int
+    (C) RESTRICTIONS:   must be greater than or equal to 1
+generateArrayType:
+    The name of the approach used to generate the array.
+    (A) REQUIRED:       if isArrayGiven=false
+    (B) TYPE:           string
+    (C) RESTRICTIONS:   random      (random values within a set range)
+                        shuffled    (each int from 1 to N in random order)
+                        ascending   (each int from 1 to N in ascending order)
+                        descending  (each int from 1 to N in descending order)
+generateArrayRandomLow:
+    The smallest value that a generated, random input array can have.
+    (A) REQUIRED:       if generateArrayType=random
+    (B) TYPE:           int
+    (C) RESTRICTIONS:   must be less than generateArrayRandomHigh
+generateArrayRandomHigh:
+    The largest value that a generated, random input array can have.
+    (A) REQUIRED:       if generateArrayType=random
+    (B) TYPE:           int
+    (C) RESTRICTIONS:   must be greater than generateArrayRandomLow
+
+=== === === === === ENABLING APP FEATURES === === === === ===
+
+visualEnabled:
+    If true, then the user is allowed to use the test case with the bar graph
+    visualization where each element is a bar in the graph; if false, then the
+    "Visualize" button in the GUI is grayed out.
+    This is usually true for test cases with a moderate input size that can be
+    reasonably graphed. Our visualization was tested for input sizes up to 1300
+    elements because that was the physical limit for what could be displayed
+    on a 1080p display (assuming each bar on the graph is at least 1 pixel wide).
+    (A) REQUIRED:       assumed as false, but must be explicitly set to true
+    (B) TYPE:           boolean
+    (C) RESTRICTIONS:   visualEnabled and plotEnabled cannot both be false
+plotEnabled:
+    If true, then the user is allowed to use the test case with the scatter plot
+    that shows the total access count versus the size of the input (N). If false,
+    then the "Plot" button in the GUI is grayed out.
+    This is usually true for test cases with a massive input size that lends for
+    demonstrating the asymptotic runtime and behavior of the sorting algorithm,
+    although plotting small input sizes is fine as well.
+    (A) REQUIRED:       assumed as false, but must be explicitly set to true
+    (B) TYPE:           boolean
+    (C) RESTRICTIONS:   visualEnabled and plotEnabled cannot both be false
+
+=== === === === === SCATTER PLOT SCALE === === === === ===
+
+isPlotBoundsGiven:
+    If true, then the scale of the x-axis and y-axis of the plot will be set
+    manually by the parameters plotLowerBoundX, plotUpperBoundX, plotLowerBoundY,
+    and plotUpperBoundY. If false, then the scales will instead be determined
+    automatically by the smallest and largest values of N sorted and the total
+    access count.
+    (A) REQUIRED:       assumed as false, but must be explicitly set to true
+    (B) TYPE:           boolean
+    (C) RESTRICTIONS:   none
+plotLowerBoundX:
+    The smallest x-value (input size N) a point can have to be displayed on the plot.
+    (A) REQUIRED:       if isPlotBoundsGiven=true
+    (B) TYPE:           long
+    (C) RESTRICTIONS:   must be less than plotUpperBoundX
+plotUpperBoundX:
+    The largest x-value (input size N) a point can have to be displayed on the plot.
+    (A) REQUIRED:       if isPlotBoundsGiven=true
+    (B) TYPE:           long
+    (C) RESTRICTIONS:   must be greater than plotLowerBoundX
+plotLowerBoundY:
+    The smallest y-value (total access count) a point can have to be displayed
+    on the plot.
+    (A) REQUIRED:       if isPlotBoundsGiven=true
+    (B) TYPE:           long
+    (C) RESTRICTIONS:   must be less than plotUpperBoundY
+plotUpperBoundY:
+    The largest y-value (total access count) a point can have to be displayed
+    on the plot.
+    (A) REQUIRED:       if isPlotBoundsGiven=true
+    (B) TYPE:           long
+    (C) RESTRICTIONS:   must be greater than plotLowerBoundY
+=== === === === === === === === === === === 
+
+
+
+#
+# How to Verify that the Sorting Algorithm Actually Worked Properly and Sorted
+# the Input or the Test Case
+#
+
+As a requirement of the CSC 345 Project, the test cases should verify that our
+code is working correctly. There is a way to verify that a sorting algorithm
+correctly sorted an input array:
+
+(1) Run a bar graph visualization:
+    *   The visualization is started with the "Visualize" button on the test case
+        selection screen.
+    *   Make sure that the test case has visualEnabled set to true.
+
+(2) Once the visualization finishes, look at the top left corner of the bar
+graph and expect a message in text to appear:
+    *   If the array was sorted properly, then it will be "The array is sorted"
+    *   If the array was not sorted properly, then will be "The array is not sorted"

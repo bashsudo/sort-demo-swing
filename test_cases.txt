@@ -1,0 +1,482 @@
+# CSC 345 Project
+# Test Cases File
+
+# === === === === === === === === === === === === === === === ===
+# STANDALONE ALGORITHMS
+# === === === === === === === === === === === === === === === ===
+
+#
+# BUBBLE SORT
+#
+
+@Bubble-Sort-General-200
+sortMethod:                 bubble
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Bubble-Sort-Slides-Worst-5000
+sortMethod:                 bubble
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Bubble-Sort-Slides-Average-5000
+sortMethod:                 bubble
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Bubble-Sort-Slides-Best-5000
+sortMethod:                 bubble
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# SELECTION SORT
+#
+
+@Selection-Sort-General-200
+sortMethod:                 selection
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Selection-Sort-Slides-Descending-5000
+sortMethod:                 selection
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Selection-Sort-Slides-Random-5000
+sortMethod:                 selection
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Selection-Sort-Slides-Ascending-5000
+sortMethod:                 selection
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# INSERTION SORT
+#
+
+@Insertion-Sort-General-200
+sortMethod:                 insertion
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Insertion-Sort-Slides-Worst-5000
+sortMethod:                 insertion
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Insertion-Sort-Slides-Average-5000
+sortMethod:                 insertion
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Insertion-Sort-Slides-Best-5000
+sortMethod:                 insertion
+isArrayGiven:               false
+generateArraySize:          5000
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# MERGE SORT
+#
+
+@Merge-Sort-General-200
+sortMethod:                 merge
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Merge-Sort-Slides-Descending-50
+sortMethod:                 merge
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Sort-Slides-Random-50
+sortMethod:                 merge
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Sort-Slides-Ascending-50
+sortMethod:                 merge
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# HEAP SORT
+#
+
+@Heap-Sort-General-200
+sortMethod:                 heap
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Heap-Sort-Slides-Descending-50
+sortMethod:                 heap
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Heap-Sort-Slides-Random-50
+sortMethod:                 heap
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Heap-Sort-Slides-Ascending-50
+sortMethod:                 heap
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# QUICK SORT
+#
+
+@Quick-Sort-General-200
+sortMethod:                 quick
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Quick-Sort-Slides-Descending-50
+sortMethod:                 quick
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Quick-Sort-Slides-Random-50
+sortMethod:                 quick
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Quick-Sort-Slides-Ascending-50
+sortMethod:                 quick
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+# This example for the worst-case of Quick Sort is a "V" shape where the minimum
+# value is in the middle of the array.
+@Quick-Sort-Slides-Worst-50
+sortMethod:                 quick
+isArrayGiven:               true
+givenArray:                 [25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+# === === === === === === === === === === === === === === === ===
+# HYBRID ALGORITHMS
+# === === === === === === === === === === === === === === === ===
+
+#
+# QUICK-MERGE (QUICK SORT AND MERGE SORT)
+#
+
+@Quick-Merge-General-200
+sortMethod:                 quick-merge
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Quick-Merge-Slides-Descending-100
+sortMethod:                 quick-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Quick-Merge-Slides-Random-100
+sortMethod:                 quick-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Quick-Merge-Slides-Ascending-100
+sortMethod:                 quick-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# BUBBLE-MERGE (BUBBLE SORT AND MERGE SORT)
+#
+
+@Bubble-Merge-General-200
+sortMethod:                 bubble-merge
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Bubble-Merge-Slides-Descending-500
+sortMethod:                 bubble-merge
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Bubble-Merge-Slides-Random-500
+sortMethod:                 bubble-merge
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Bubble-Merge-Slides-Ascending-500
+sortMethod:                 bubble-merge
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# HEAP-MERGE (HEAP SORT AND MERGE SORT)
+#
+
+@Heap-Merge-General-200
+sortMethod:                 heap-merge
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Heap-Merge-Slides-Descending-100
+sortMethod:                 heap-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Heap-Merge-Slides-Random-100
+sortMethod:                 heap-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Heap-Merge-Slides-Ascending-100
+sortMethod:                 heap-merge
+isArrayGiven:               false
+generateArraySize:          100
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# MERGE-INSERTION (INSERTION SORT AND MERGE SORT)
+#
+
+@Merge-Insertion-General-200
+sortMethod:                 merge-insertion
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Merge-Insertion-Slides-Descending-500
+sortMethod:                 merge-insertion
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Insertion-Slides-Random-500
+sortMethod:                 merge-insertion
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Insertion-Slides-Ascending-500
+sortMethod:                 merge-insertion
+isArrayGiven:               false
+generateArraySize:          500
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+#
+# MERGE-SELECTION (SELECTION SORT AND MERGE SORT)
+#
+
+@Merge-Selection-General-200
+sortMethod:                 merge-selection
+isArrayGiven:               false
+generateArraySize:          200
+generateArrayType:          shuffled
+isPlotBoundsGiven:          false
+visualEnabled:              true
+plotEnabled:                true
+
+@Merge-Selection-Slides-Descending-50
+sortMethod:                 merge-selection
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          descending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Selection-Slides-Random-50
+sortMethod:                 merge-selection
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          random
+generateArrayRandomLow:     -10000
+generateArrayRandomHigh:     10000
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
+
+@Merge-Selection-Slides-Ascending-50
+sortMethod:                 merge-selection
+isArrayGiven:               false
+generateArraySize:          50
+generateArrayType:          ascending
+isPlotBoundsGiven:          false
+visualEnabled:              false
+plotEnabled:                true
